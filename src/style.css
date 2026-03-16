@@ -65,7 +65,7 @@ img {
 }
 
 .section-padding {
-  padding: 100px 0;
+  padding: 60px 0;
 }
 
 .gray-bg {
@@ -341,6 +341,15 @@ img {
 
 .section-title {
   color: var(--dark-gray);
+}
+
+.section-intro {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-style: italic;
+  line-height: 1.6;
 }
 
 /* About Section Styles */
