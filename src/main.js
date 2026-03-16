@@ -54,6 +54,13 @@ const services = [
     icon: "fas fa-graduation-cap",
     desc: "Découvrez nos formations complètes couvrant l'ensemble de nos expertises : graphisme, impression et communication visuelle.",
     image: "Images/service_formation.png"
+  },
+  {
+    id: 9,
+    title: "Intermédiation commerciale",
+    icon: "fas fa-handshake",
+    desc: "Nous facilitons vos échanges commerciaux et partenariats stratégiques pour booster votre croissance économique.",
+    image: "Images/service_intermediation.png"
   }
 ];
 
@@ -207,19 +214,25 @@ function renderServices() {
   const grid = document.getElementById('services-grid');
   if (!grid) return;
 
-  grid.innerHTML = services.map(service => `
-    <div class="service-card" data-aos="fade-up">
-      <div class="service-image">
-        <img src="${service.image}" alt="${service.title}">
-        <div class="service-icon"><i class="${service.icon}"></i></div>
+  grid.innerHTML = services.map(service => {
+    const isSpecial = service.title === "Formation" || service.title === "Intermédiation commerciale";
+    const ctaText = isSpecial ? "Contactez-nous" : "Voir plus";
+    const ctaLink = isSpecial ? "#quote" : "#portfolio";
+    
+    return `
+      <div class="service-card" data-aos="fade-up">
+        <div class="service-image">
+          <img src="${service.image}" alt="${service.title}">
+          <div class="service-icon"><i class="${service.icon}"></i></div>
+        </div>
+        <div class="service-details">
+          <h3>${service.title}</h3>
+          <p>${service.desc}</p>
+          <a href="${ctaLink}" class="service-link">${ctaText} <i class="fas fa-arrow-right"></i></a>
+        </div>
       </div>
-      <div class="service-details">
-        <h3>${service.title}</h3>
-        <p>${service.desc}</p>
-        <a href="#portfolio" class="service-link">Voir plus <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 // Portfolio Pagination state
