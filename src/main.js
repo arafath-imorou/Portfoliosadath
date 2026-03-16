@@ -4,49 +4,49 @@ const services = [
     title: "Logos & Branding",
     icon: "fas fa-pen-nib",
     desc: "Création d'identités visuelles uniques et mémorables pour votre marque.",
-    image: "Images/0b0de4a3-f7a6-4430-90d6-00d07db51ba0.jpg"
+    image: "Images/service_branding.png"
   },
   {
     id: 2,
     title: "Cartes de Visite",
     icon: "fas fa-address-card",
     desc: "Design professionnel pour une première impression percutante.",
-    image: "Images/aecfbbf3-b606-4471-b71f-b6ab3c13e672.jpg"
+    image: "Images/service_cards.png"
   },
   {
     id: 3,
     title: "Flyers & Affiches",
     icon: "fas fa-layer-group",
     desc: "Supports de communication visuels pour vos événements et promotions.",
-    image: "Images/33f7ba80-f873-48f5-8197-37be61e6bbb5.jpg"
+    image: "Images/service_flyers.png"
   },
   {
     id: 4,
     title: "Impression sur Supports",
     icon: "fas fa-print",
     desc: "T-shirts, casquettes, tasses et objets personnalisés de haute qualité.",
-    image: "Images/38bff205-98fe-433e-9d72-f3f1f1cffc5e.jpg"
+    image: "Images/service_print_supports.png"
   },
   {
-    id: 5,
+    id: 21,
     title: "Factures & Cachets",
     icon: "fas fa-file-invoice",
     desc: "Conception de documents administratifs et tampons professionnels.",
-    image: "Images/d94f7117-ca13-4228-9d67-2f2b1ebecbc1.jpg"
+    image: "Images/service_stamps.png"
   },
   {
     id: 6,
     title: "Communication Visuelle",
     icon: "fas fa-bullhorn",
     desc: "Solutions globales pour booster la visibilité de votre entreprise.",
-    image: "Images/a11a7e70-292a-4f57-a4dc-a8f4c2b98f3e.jpg"
+    image: "Images/service_visual_com.png"
   },
   {
     id: 7,
     title: "Événementiel",
     icon: "fas fa-calendar-star",
     desc: "Organisation complète d'événements : de la conception à la finition. Logistique, Sécurité, Mise en œuvre, Décoration, etc.",
-    image: "Images/83272168-9817-4191-8338-a54852870b5a.jpg"
+    image: "Images/service_events.png"
   }
 ];
 
