@@ -1120,6 +1120,34 @@ input:focus, select:focus, textarea:focus {
   transform: rotate(90deg);
 }
 
+.lightbox-prev, .lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 20001;
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-prev:hover, .lightbox-next:hover {
+  background: var(--primary-orange);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev { left: 40px; }
+.lightbox-next { right: 40px; }
+
 @media (max-width: 768px) {
   .lightbox-close {
     top: 20px;

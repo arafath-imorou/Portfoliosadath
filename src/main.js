@@ -359,22 +359,62 @@ function setupLightbox() {
   const img = document.getElementById('lightbox-img');
   const title = document.getElementById('lightbox-title');
   const closeBtn = document.querySelector('.lightbox-close');
+  const prevBtn = document.querySelector('.lightbox-prev');
+  const nextBtn = document.querySelector('.lightbox-next');
+
+  let currentItems = [];
+  let currentIndex = 0;
 
   if (!modal || !img || !title) return;
+
+  const updateLightbox = (index) => {
+    if (index < 0 || index >= currentItems.length) return;
+    currentIndex = index;
+    const item = currentItems[currentIndex];
+    const itemImg = item.querySelector('img');
+    const itemTitle = item.querySelector('h4');
+    
+    img.src = itemImg.src;
+    title.textContent = itemTitle.textContent;
+  };
+
+  const nextImage = () => {
+    if (currentItems.length <= 1) return;
+    currentIndex = (currentIndex + 1) % currentItems.length;
+    updateLightbox(currentIndex);
+  };
+
+  const prevImage = () => {
+    if (currentItems.length <= 1) return;
+    currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
+    updateLightbox(currentIndex);
+  };
 
   // Event delegation for portfolio items
   document.getElementById('portfolio-grid').addEventListener('click', (e) => {
     const viewBtn = e.target.closest('.view-project');
     if (viewBtn) {
       const portfolioItem = viewBtn.closest('.portfolio-item');
-      const imgSrc = portfolioItem.querySelector('img').src;
-      const itemTitle = portfolioItem.querySelector('h4').textContent;
-
-      img.src = imgSrc;
-      title.textContent = itemTitle;
+      
+      // Get all currently visible portfolio items
+      currentItems = Array.from(document.querySelectorAll('.portfolio-item'));
+      currentIndex = currentItems.indexOf(portfolioItem);
+      
+      updateLightbox(currentIndex);
+      
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
+  });
+
+  prevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    prevImage();
+  });
+
+  nextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nextImage();
   });
 
   const closeLightbox = () => {
@@ -387,10 +427,12 @@ function setupLightbox() {
     if (e.target === modal) closeLightbox();
   });
 
-  // Close with Escape key
+  // Close with Escape key & Arrow navigation
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      closeLightbox();
+    if (modal.classList.contains('open')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
     }
   });
 }
