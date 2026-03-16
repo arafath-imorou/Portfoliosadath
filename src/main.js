@@ -47,6 +47,13 @@ const services = [
     icon: "fas fa-calendar-star",
     desc: "Organisation complète d'événements : de la conception à la finition. Logistique, Sécurité, Mise en œuvre, Décoration, etc.",
     image: "Images/service_events.png"
+  },
+  {
+    id: 8,
+    title: "Formation",
+    icon: "fas fa-graduation-cap",
+    desc: "Découvrez nos formations complètes couvrant l'ensemble de nos expertises : graphisme, impression et communication visuelle.",
+    image: "Images/service_formation.png"
   }
 ];
 
@@ -110,7 +117,6 @@ const portfolioProjects = [
   { id: 56, title: "Badge & Objet", category: "objects", image: "Images/a05d76e8-bd08-45d9-a972-ba3f322a8291.jpg" },
   { id: 57, title: "Plaquette Print", category: "print", image: "Images/a11a7e70-292a-4f57-a4dc-a8f4c2b98f3e.jpg" },
   { id: 58, title: "Affiche Publicitaire", category: "print", image: "Images/a3878f42-93bb-4134-b043-4e94959066d5.jpg" },
-  { id: 59, title: "Impression Digitale", category: "objects", image: "Images/a4046951-ebea-4acf-9e3f-ed1e4b0159a2.jpg" },
   { id: 60, title: "Chemise Portfolio", category: "print", image: "Images/a87bfacd-bd6d-418a-b02e-73beae13e759.jpg" },
   { id: 61, title: "Identité de marque", category: "logos", image: "Images/ab7ed7af-8fb3-4f10-9ef1-18e4475492ea.jpg" },
   { id: 62, title: "Logo Institutionnel", category: "logos", image: "Images/aecfbbf3-b606-4471-b71f-b6ab3c13e672.jpg" },
@@ -165,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupPortfolioFilters();
   setupContactForm();
   setupLightbox();
+  initStatsCounter();
 });
 
 // Navbar Effects
@@ -435,4 +442,42 @@ function setupLightbox() {
       if (e.key === 'ArrowLeft') prevImage();
     }
   });
+}
+
+// Statistics Counter Animation
+function initStatsCounter() {
+  const stats = document.querySelectorAll('.stat-number');
+  const observerOptions = {
+    threshold: 0.5
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const countTo = parseInt(target.getAttribute('data-target'));
+        let startTimestamp = null;
+        const duration = 2000;
+
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const currentCount = Math.floor(progress * countTo);
+          
+          target.textContent = currentCount;
+
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            target.textContent = countTo;
+          }
+        };
+
+        window.requestAnimationFrame(step);
+        observer.unobserve(target);
+      }
+    });
+  }, observerOptions);
+
+  stats.forEach(stat => observer.observe(stat));
 }

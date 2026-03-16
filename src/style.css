@@ -761,8 +761,8 @@ input:focus, select:focus, textarea:focus {
 .step-num {
   font-size: 48px;
   font-weight: 800;
-  color: var(--medium-gray);
-  opacity: 0.3;
+  color: var(--primary-orange);
+  opacity: 0.7;
   display: block;
   margin-bottom: -20px;
 }
